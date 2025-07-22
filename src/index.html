@@ -6,8 +6,124 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (pour l'icône de sauvegarde) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
   <app-root></app-root>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // JavaScript pour simuler la logique Angular et la validation
+    const titreInput = document.getElementById('titre');
+    const titreFeedback = document.getElementById('titreFeedback');
+    const submitBtn = document.getElementById('submitBtn');
+    const noteForm = document.getElementById('noteForm');
+    const cardTitle = document.querySelector('.card-title');
+    const toggleModeBtn = document.querySelector('.btn-toggle-mode');
+    const couleurInput = document.getElementById('couleur');
+    const contenuInput = document.getElementById('contenu');
+    const colorPreview = document.getElementById('colorPreview'); // Référence au nouvel élément d'aperçu
+
+    let isEditing = false; // Simule idNoteActuelle
+
+    function validateForm() {
+        if (titreInput.value.trim() === '') {
+            titreInput.classList.add('is-invalid');
+            titreFeedback.style.display = 'block';
+            submitBtn.disabled = true;
+        } else {
+            titreInput.classList.remove('is-invalid');
+            titreFeedback.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+        updateSubmitButtonText();
+    }
+
+    function updateSubmitButtonText() {
+        if (isEditing) {
+            submitBtn.innerHTML = '<i class="bi bi-save me-2"></i> Enregistrer les Modifications';
+            cardTitle.textContent = 'Modifier une Note';
+            toggleModeBtn.innerHTML = '<i class="bi bi-plus-circle me-2"></i> Passer en mode Création';
+        } else {
+            submitBtn.innerHTML = '<i class="bi bi-save me-2"></i> Ajouter la Note';
+            cardTitle.textContent = 'Créer une Nouvelle Note';
+            toggleModeBtn.innerHTML = '<i class="bi bi-plus-circle me-2"></i> Passer en mode Édition';
+        }
+    }
+    function updateColorPreview() {
+        // Log pour vérifier que la fonction est appelée et quelle couleur est reçue
+        console.log('Mise à jour de l\'aperçu de couleur avec :', couleurInput.value);
+        colorPreview.style.backgroundColor = couleurInput.value;
+    }
+
+    function toggleMode() {
+        isEditing = !isEditing;
+        if (isEditing) {
+            // Simuler le chargement d'une note existante
+            titreInput.value = 'Titre de la note existante';
+            contenuInput.value = 'Contenu de la note à modifier...';
+            couleurInput.value = '#FFB6B9'; // Couleur pastel pour l'édition
+        } else {
+            // Réinitialiser pour la création
+            titreInput.value = '';
+            contenuInput.value = '';
+            couleurInput.value = '#ffffff';
+        }
+        validateForm(); // Re-valider et mettre à jour le bouton
+        updateColorPreview(); // Mettre à jour l'aperçu après le changement de mode
+    }
+
+    // Gérer la soumission du formulaire
+    noteForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        validateForm(); // Valider avant de soumettre
+
+        if (!submitBtn.disabled) {
+            const noteData = {
+                title: titreInput.value.trim(),
+                content: contenuInput.value.trim(),
+                color: couleurInput.value,
+                id: isEditing ? 'note-id-actuelle' : `note-${Date.now()}`
+            };
+            console.log('Données de la note soumises :', noteData);
+
+            // Simule une "notification"
+            const message = `Note ${isEditing ? 'modifiée' : 'ajoutée'} avec succès !`;
+            const tempInput = document.createElement('input');
+            tempInput.value = message;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            console.log(message);
+
+            // Réinitialiser le formulaire si en mode création
+            if (!isEditing) {
+                noteForm.reset();
+                titreInput.classList.remove('is-invalid');
+                titreFeedback.style.display = 'none';
+                submitBtn.disabled = true;
+                couleurInput.value = '#ffffff'; // S'assurer que la couleur est réinitialisée
+                updateColorPreview(); // Mettre à jour l'aperçu après réinitialisation
+            }
+        }
+    });
+
+    // Initialiser l'état du formulaire et l'aperçu de la couleur au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+        validateForm();
+        updateSubmitButtonText();
+        updateColorPreview(); // Initialiser l'aperçu de la couleur
+    });
+</script>
+
 </body>
 </html>
