@@ -1,0 +1,107 @@
+body {
+            /* Fond principal: Gris anthracite */
+            background-color: #2B2B2B;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif; /* Utilisation de la police Inter */
+        }
+        .card {
+            /* Fond de la carte: légèrement transparent avec flou */
+            background-color: rgba(43, 43, 43, 0.9); 
+            /*backdrop-filter: blur(5px);*/
+            border: 1px solid rgba(0, 255, 255, 0.3); /* Bordure subtile cyan */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ombre plus profonde */
+        }
+        .card-title {
+            /* Titre: Cyan clair */
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.4); /* Effet de lueur */
+        }
+        .form-label {
+            /* Labels: Cyan clair */
+            color: #00FFFF;
+        }
+        .form-control {
+            /* Champs de saisie: Fond gris anthracite, texte blanc cassé, bordure cyan, lueur */
+            background-color: #2B2B2B;
+            color: #EAEAEA;
+            border: 1px solid #00FFFF;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease; /* Transition douce pour le focus */
+        }
+        .form-control:focus {
+            background-color: #3A3A3A; /* Légèrement plus clair au focus */
+            border-color: #9C27B0; /* Bordure violet néon au focus */
+            box-shadow: 0 0 8px rgba(156, 39, 176, 0.7); /* Lueur violette au focus */
+            color: #EAEAEA;
+        }
+        .form-control-color {
+            /* Sélecteur de couleur: Hauteur fixe, bordure et ombre comme les autres champs */
+            height: 50px;
+            border: 1px solid #00FFFF;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            padding: 0.25rem; /* Ajustement du padding pour la visibilité */
+            /* Assurez-vous que le curseur est bien visible */
+            cursor: pointer;
+        }
+        .form-text {
+            /* Texte d'aide: Blanc cassé */
+            color: #EAEAEA !important; /* Utilisation de !important pour s'assurer que le style est appliqué */
+        }
+        .invalid-feedback {
+            /* Message d'erreur: Rouge vif pour le contraste */
+            color: #FF6B6B;
+            display: block; /* S'assurer qu'il est toujours visible pour la démo */
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+        .btn-futuristic {
+            /* Boutons: Dégradé cyan-violet néon, texte blanc, sans bordure, ombre lueur */
+            background: linear-gradient(45deg, #00FFFF, #9C27B0);
+            color: #FFFFFF;
+            border: none;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(156, 39, 176, 0.7);
+            transition: all 0.3s ease;
+        }
+        .btn-futuristic:hover {
+            transform: translateY(-2px); /* Léger effet de soulèvement */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9); /* Lueur plus intense au survol */
+            background: linear-gradient(45deg, #9C27B0, #00FFFF); /* Inversion du dégradé au survol */
+        }
+        .btn-futuristic:disabled {
+            /* Bouton désactivé: Dégradé de gris, sans ombre */
+            background: linear-gradient(45deg, #4B4B4B, #6B6B6B);
+            color: #CCCCCC;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+        /* Styles pour le bouton de basculement (similaire aux boutons futuristes) */
+        .btn-toggle-mode {
+            background: linear-gradient(90deg, #B2EBF2, #FFB6B9); /* Couleurs pastel pour le basculement */
+            color: #333;
+            border: none;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(178, 235, 242, 0.5);
+            transition: all 0.3s ease;
+        }
+        .btn-toggle-mode:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(255, 182, 185, 0.7);
+            background: linear-gradient(90deg, #FFB6B9, #B2EBF2);
+        }
+
+        /* Nouveau style pour l'aperçu de la couleur */
+        .color-preview {
+            width: 60px; /* Largeur de l'aperçu */
+            height: 50px; /* Hauteur de l'aperçu, correspond à l'input */
+            border: 1px solid #00FFFF;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            border-radius: 0.375rem; /* rounded-3 de Bootstrap */
+            margin-left: 1rem; /* Marge à gauche pour séparer de l'input */
+            transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
+            flex-shrink: 0; /* Empêche l'aperçu de rétrécir */
+        }
