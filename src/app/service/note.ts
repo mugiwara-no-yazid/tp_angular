@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core'; 
+import { INote, listeCheck } from '../models/Inotes';
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
-  private notes:INote[] = this.init();
-  hello()
-  {
-    console.log(this.notes);
-  }
+  private notes:INote [] = this.init();
   getNotes()
    {
     return this.notes;

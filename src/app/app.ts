@@ -15,5 +15,5 @@ import { NoteService } from './service/note';
 })
 export class App {
   protected title = 'keep Google';
-constructor(private noteservice : NoteService){     }
+constructor(private noteservice : NoteService){}
 }
