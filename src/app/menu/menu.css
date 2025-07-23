@@ -6,3 +6,47 @@
   'GRAD' 0,
   'opsz' 24
 }
+.menu-toggle {
+    position: fixed;
+    top: 26px;
+    left: auto;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 1001;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background: #fff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+.sidenav.open {
+  width: 250px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
+.sidenav ul {
+    list-style: none;
+    padding: 0;
+}
+.sidenav li {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.sidenav li:hover {
+    background: #f1f3f4;
+}
+.sidenav .material-symbols-outlined {
+    margin-right: 16px;
+    font-size: 24px;
+}

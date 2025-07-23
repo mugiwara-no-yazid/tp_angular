@@ -1,17 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NoteCard} from './note-card/note-card';
-import { NoteForm } from './note-form/note-form';
-import { NoteList } from './note-list/note-list';
 import { SearchBar } from './search-bar/search-bar';
 // import { Menu } from './menu/menu';
 import { NoteService } from './service/note';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NoteCard,NoteForm , NoteList, SearchBar],
+  imports: [RouterOutlet, SearchBar],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected title = 'keep Google';

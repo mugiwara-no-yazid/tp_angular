@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { App } from "../app";
-// import { RouterOutlet } from '@angular/router';
+import { NoteList } from '../note-list/note-list';
+import { NoteForm } from '../note-form/note-form';
+import { Archive } from '../archive/archive';
+import { Supprimer } from '../supprimer/supprimer';
+import { Rappel } from '../rappel/rappel';
 
 @Component({
   selector: 'app-menu',
-  imports: [],
+  imports: [NoteList, NoteForm, Archive, Supprimer, Rappel],
   templateUrl: './menu.html',
   styleUrl: './menu.css'
 })
