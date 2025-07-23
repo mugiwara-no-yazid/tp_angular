@@ -4,7 +4,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
