@@ -15,23 +15,5 @@ import { NoteService } from './service/note';
 })
 export class App {
   protected title = 'keep Google';
-constructor(private noteservice : NoteService){
-  
-    
-    this.noteservice.createNote({
-        titre: "Liste de courses",
-        contenu: [
-            { contenu: "Lait", cheker: false },
-            { contenu: "Pain", cheker: true },
-            { contenu: "Œufs", cheker: false }
-        ],
-        couleur: "#FFD700",
-        rappelleDate: new Date("2023-12-15T09:00:00"),
-        colaborateur: ["user1@example.com", "user2@example.com"]});
-
-        console.log(this.noteservice.getNoteById("note4"));
-        
-        //console.log(this.noteservice.getNotes())
-        
-  }
+constructor(private noteservice : NoteService){     }
 }
