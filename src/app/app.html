@@ -2,33 +2,10 @@
 <app-note-list></app-note-list>
 <div class="container my-5">
     <div class="card shadow-sm border-0 rounded-lg p-4 custom-keep-form mb-5">
-    <app-note-form
-      (formulaireSoumis)="onFormulaireSoumisAjout()"
-    ></app-note-form>
+    <app-note-form></app-note-form>
   </div>
 
 
-  <hr class="my-5">
-  <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content border-0 rounded-4 shadow-lg custom-keep-modal-card">
-        <div class="modal-header border-0 pb-0">
-          <h5 class="modal-title visually-hidden" id="noteModalLabel">Modifier la Note</h5>
-          <button type="button" class="btn btn-sm btn-icon-keep position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="tooltip" title="Épingler la note">
-              <i class="bi bi-pin-fill"></i>
-          </button>
-          <button type="button" class="btn-close visually-hidden" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body pt-0">
-          <app-note-form
-            [noteAEditer]="selectedNoteForEdit"
-            (formulaireSoumis)="onFormulaireSoumisModification()"
-          ></app-note-form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
+  
 <app-note-card></app-note-card>
 <router-outlet></router-outlet>
