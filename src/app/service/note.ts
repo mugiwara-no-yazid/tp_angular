@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
+import { INote, listeCheck } from '../models/inotes';
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
-  private notes:INote[] = [];
- 
-  getNotes()
-   {
+   private notes: INote[] = this.init();
+
+// In note.service.ts
+  getNotes(): INote[] {
     return this.notes;
-   }
+  }
   createNote(noteData: {
     titre: string;
     contenu: string | listeCheck[];
@@ -37,25 +38,25 @@ export class NoteService {
       if (!noteToUpdate) return null;
         noteToUpdate.id =id;
         noteToUpdate.dateCreation = noteToUpdate.dateCreation;
-      if (newNote.titre !== undefined && newNote.titre !== "") 
+      if (newNote.titre !== undefined && newNote.titre !== "")
           noteToUpdate.titre = newNote.titre;
-      
-      if (newNote.contenu !== undefined && newNote.contenu !== "") 
+
+      if (newNote.contenu !== undefined && newNote.contenu !== "")
           noteToUpdate.contenu = newNote.contenu;
-      
-      if (newNote.couleur !== undefined && newNote.couleur !== "") 
+
+      if (newNote.couleur !== undefined && newNote.couleur !== "")
           noteToUpdate.couleur = newNote.couleur;
 
-      if (newNote.archiver !== undefined) 
+      if (newNote.archiver !== undefined)
           noteToUpdate.archiver = newNote.archiver;
-        
-      if (newNote.epingler !== undefined) 
+
+      if (newNote.epingler !== undefined)
           noteToUpdate.epingler = newNote.epingler;
 
-      if (newNote.rappelleDate !== undefined ) 
+      if (newNote.rappelleDate !== undefined )
           noteToUpdate.rappelleDate = newNote.rappelleDate;
 
-      if (newNote.colaborateur !== undefined && newNote.colaborateur.length === 0) 
+      if (newNote.colaborateur !== undefined && newNote.colaborateur.length === 0)
           noteToUpdate.colaborateur = newNote.colaborateur;
        this.notes.push(noteToUpdate)
       return noteToUpdate;
@@ -116,6 +117,7 @@ export class NoteService {
         dateCreation: new Date("2023-12-01T08:00:00"),
         colaborateur: ["admin@example.com"]
     }
+
 ];
 return notes;
   }

@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoteService {
-  private _listeNotes: Note[] = [
+  public _listeNotes: Note[] = [
     { id: '1', titre: 'Ma Première Note', contenu: 'Ceci est le contenu de ma première note.', couleur: '#FFDDC1' },
     { id: '2', titre: 'Ma Deuxième Note', contenu: 'Une autre note importante.', couleur: '#D4EEFF' }
   ];
