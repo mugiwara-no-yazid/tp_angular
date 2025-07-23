@@ -4,4 +4,5 @@ export interface Note {
   titre: string;
   contenu: string;
   couleur: string;
+  
 }

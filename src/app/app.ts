@@ -1,22 +1,16 @@
-import { Component } from '@angular/core';
-import { MainContainer } from './search-bar/search-bar';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { SearchBar } from './search-bar/search-bar';
+// import { Menu } from './menu/menu';
+import { NoteService } from './service/note';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [ MainContainer],
+  imports: [RouterOutlet, SearchBar],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App {
-  protected title = 'keepgoogle';
-   noteATesterEdition = {
-    id: '1',
-    titre: 'Note à modifier',
-    contenu: 'Contenu initial de la note à éditer.',
-    couleur: '#FFFFE0'
-  };
-  onFormulaireSoumis(): void {
-    console.log('Le formulaire a été soumis ! (Depuis AppComponent)');
-}
+  protected title = 'keep Google';
+constructor(private noteservice : NoteService){     }
 }
