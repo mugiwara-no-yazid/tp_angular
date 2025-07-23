@@ -21,11 +21,15 @@ export class App {
     contenu: 'Contenu initial de la note à éditer.',
     couleur: '#FFFFE0'
   };
-  onFormulaireSoumis(): void {
-    console.log('Le formulaire a été soumis ! (Depuis AppComponent)');
+  selectedNoteForEdit: any = null; // ou Note | null selon ton modèle
+
+  onFormulaireSoumisAjout(): void {
+    console.log('Formulaire d\'ajout soumis !');
+  }
+
+  onFormulaireSoumisModification(): void {
+    console.log('Formulaire de modification soumis !');
+  }
+
 }
 
-constructor(private noteservice : NoteService){
-    console.log(this.noteservice.init())
-  }
-}

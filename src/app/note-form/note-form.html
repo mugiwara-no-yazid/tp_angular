@@ -1,7 +1,7 @@
 <form #formulaireNote="ngForm" (ngSubmit)="gererSoumission(formulaireNote)" [ngStyle]="{'width.px': 539}">
     <div class="row g-3 position-relative"> <button type="button" class="btn btn-sm btn-icon-keep pin-icon"
-            data-bs-toggle="tooltip" title="Épingler la note" (click)="toggleEpingler()"> <i class="bi"
-                [ngClass]="noteAEditer?.epingler ? 'bi-pin-fill' : 'bi-pin'"></i> </button>
+            data-bs-toggle="tooltip" title="Épingler la note" (click)="toggleEpingler()"> 
+          <!-- [ngClass]="noteAEditer?.epingler ? 'bi-pin-fill' : 'bi-pin'" -->  <i class="bi bi-pin-fill"></i> </button>
 
         <div class="col-12 mb-3">
             <label for="titre" class="form-label visually-hidden">Titre</label>
