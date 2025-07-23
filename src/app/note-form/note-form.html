@@ -1,1 +1,64 @@
-<p>note-form works!</p>
+<div class="container my-5">
+    <div class="card shadow-sm p-4 rounded-4">
+        <h3 class="card-title text-center mb-4 fw-bold">
+            Créer une Nouvelle Note
+        </h3>
+
+        <!-- Bouton de basculement pour la démonstration -->
+        <button type="button" class="btn btn-lg w-100 mb-4 rounded-pill d-flex align-items-center justify-content-center py-2 btn-toggle-mode" onclick="toggleMode()">
+            <i class="bi bi-plus-circle me-2"></i> Basculer Mode (Créer/Modifier)
+        </button>
+
+        <form id="noteForm">
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <label for="titre" class="form-label">Titre <span class="text-danger">*</span></label>
+                    <input
+                        type="text"
+                        name="titre"
+                        id="titre"
+                        class="form-control form-control-lg rounded-3"
+                        required
+                        oninput="validateForm()"
+                    />
+                    <div id="titreFeedback" class="invalid-feedback">
+                        Le titre est requis et ne peut pas être vide.
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="contenu" class="form-label">Contenu</label>
+                    <textarea
+                        name="contenu"
+                        id="contenu"
+                        class="form-control rounded-3"
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="couleur" class="form-label">Couleur</label>
+                    <div class="d-flex align-items-center"> <!-- Utilisation de flexbox pour aligner l'input et l'aperçu -->
+                        <input
+                            type="color"
+                            name="couleur"
+                            id="couleur"
+                            value="#ffffff"
+                            class="form-control form-control-color rounded-3 flex-grow-1" 
+                            oninput="updateColorPreview()" /><!-- Appel de la fonction de mise à jour -->
+                        <div id="colorPreview" class="color-preview"></div> <!--L'élément d'aperçu de la couleur -->
+                    </div>
+                    <div class="form-text">
+                        Cliquez sur le carré de couleur pour ouvrir le sélecteur et choisir une couleur d'arrière-plan pour votre note.
+                    </div>
+                </div>
+
+                <div class="col-12 text-end mt-4">
+                    <button type="submit" id="submitBtn" class="btn btn-lg w-100 rounded-pill d-flex align-items-center justify-content-center py-3 btn-futuristic">
+                        <i class="bi bi-save me-2"></i> Ajouter la Note
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
