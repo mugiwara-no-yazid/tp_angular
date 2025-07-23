@@ -1,7 +1,5 @@
 <form #formulaireNote="ngForm" (ngSubmit)="gererSoumission(formulaireNote)" [ngStyle]="{'width.px': 539}">
-    <div class="row g-3 position-relative"> <button type="button" class="btn btn-sm btn-icon-keep pin-icon"
-            data-bs-toggle="tooltip" title="Épingler la note" (click)="toggleEpingler()"> 
-          <!-- [ngClass]="noteAEditer?.epingler ? 'bi-pin-fill' : 'bi-pin'" -->  <i class="bi bi-pin-fill"></i> </button>
+    <div class="row g-3 position-relative"> 
 
         <div class="col-12 mb-3">
             <label for="titre" class="form-label visually-hidden">Titre</label>
@@ -40,28 +38,6 @@
                 <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Collaborateur"
                     (click)="ajouterCollaborateur()">
                     <i class="bi bi-person-plus-fill"></i>
-                </button>
-
-                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip"
-                    title="Ajouter une image" (click)="ajouterImage()">
-                    <i class="bi bi-image-fill"></i>
-                </button>
-
-                
-
-                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Plus"
-                    (click)="afficherPlusOptions()">
-                    <i class="bi bi-three-dots-vertical"></i>
-                </button>
-
-                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Annuler"
-                    (click)="annulerModification()">
-                    <i class="bi bi-arrow-counterclockwise"></i>
-                </button>
-
-                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Répéter"
-                    (click)="refaireModification()">
-                    <i class="bi bi-arrow-clockwise"></i>
                 </button>
             </div>
 

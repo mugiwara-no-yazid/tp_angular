@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { INote, listeCheck } from '../models/inotes';
+import { INote, listeCheck } from '../models/Inotes';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +15,7 @@ export class NoteService {
     titre: string;
     contenu: string | listeCheck[];
     couleur: string;
-    rappelleDate: Date;
+    rappelleDate: Date| null;
     colaborateur: string[];
 }): INote {
     const newNote: INote = {
