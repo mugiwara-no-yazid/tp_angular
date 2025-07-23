@@ -1,64 +1,77 @@
-<div class="container my-5">
-    <div class="card shadow-sm p-4 rounded-4">
-        <h3 class="card-title text-center mb-4 fw-bold">
-            Créer une Nouvelle Note
-        </h3>
+<form #formulaireNote="ngForm" (ngSubmit)="gererSoumission(formulaireNote)" [ngStyle]="{'width.px': 539}">
+    <div class="row g-3 position-relative"> <button type="button" class="btn btn-sm btn-icon-keep pin-icon"
+            data-bs-toggle="tooltip" title="Épingler la note" (click)="toggleEpingler()"> 
+          <!-- [ngClass]="noteAEditer?.epingler ? 'bi-pin-fill' : 'bi-pin'" -->  <i class="bi bi-pin-fill"></i> </button>
 
-        <!-- Bouton de basculement pour la démonstration -->
-        <button type="button" class="btn btn-lg w-100 mb-4 rounded-pill d-flex align-items-center justify-content-center py-2 btn-toggle-mode" onclick="toggleMode()">
-            <i class="bi bi-plus-circle me-2"></i> Basculer Mode (Créer/Modifier)
-        </button>
-
-        <form id="noteForm">
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="titre" class="form-label">Titre <span class="text-danger">*</span></label>
-                    <input
-                        type="text"
-                        name="titre"
-                        id="titre"
-                        class="form-control form-control-lg rounded-3"
-                        required
-                        oninput="validateForm()"
-                    />
-                    <div id="titreFeedback" class="invalid-feedback">
-                        Le titre est requis et ne peut pas être vide.
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <label for="contenu" class="form-label">Contenu</label>
-                    <textarea
-                        name="contenu"
-                        id="contenu"
-                        class="form-control rounded-3"
-                        rows="4"
-                    ></textarea>
-                </div>
-
-                <div class="col-md-12">
-                    <label for="couleur" class="form-label">Couleur</label>
-                    <div class="d-flex align-items-center"> <!-- Utilisation de flexbox pour aligner l'input et l'aperçu -->
-                        <input
-                            type="color"
-                            name="couleur"
-                            id="couleur"
-                            value="#ffffff"
-                            class="form-control form-control-color rounded-3 flex-grow-1" 
-                            oninput="updateColorPreview()" /><!-- Appel de la fonction de mise à jour -->
-                        <div id="colorPreview" class="color-preview"></div> <!--L'élément d'aperçu de la couleur -->
-                    </div>
-                    <div class="form-text">
-                        Cliquez sur le carré de couleur pour ouvrir le sélecteur et choisir une couleur d'arrière-plan pour votre note.
-                    </div>
-                </div>
-
-                <div class="col-12 text-end mt-4">
-                    <button type="submit" id="submitBtn" class="btn btn-lg w-100 rounded-pill d-flex align-items-center justify-content-center py-3 btn-futuristic">
-                        <i class="bi bi-save me-2"></i> Ajouter la Note
-                    </button>
+        <div class="col-12 mb-3">
+            <label for="titre" class="form-label visually-hidden">Titre</label>
+            <input type="text" name="titre" id="titre" [(ngModel)]="titre"
+                class="form-control form-control-plaintext fs-4 fw-bold custom-keep-input"
+                [class.is-invalid]="champTitre.invalid && (champTitre.dirty || champTitre.touched)" required
+                placeholder="Titre" #champTitre="ngModel" />
+            <div *ngIf="champTitre.invalid && (champTitre.dirty || champTitre.touched)"
+                class="invalid-feedback d-block">
+                <div *ngIf="champTitre.errors?.['required']">
+                    Le titre est requis.
                 </div>
             </div>
-        </form>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label for="contenu" class="form-label visually-hidden">Contenu</label>
+            <textarea name="contenu" id="contenu" [(ngModel)]="contenu" (ngModelChange)="onContenuChange($event)"
+                class="form-control form-control-plaintext custom-keep-input" rows="3"
+                placeholder="Prenez une note..."></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Rappel"
+                    (click)="toggleRappel()">
+                    <i class="bi bi-bell-fill"></i>
+                </button>
+
+                <label for="couleur" class="btn btn-sm btn-icon-keep mb-0" data-bs-toggle="tooltip"
+                    title="Options de couleur">
+                    <i class="bi bi-palette-fill"></i>
+                    <input title="Sélectionner une couleur" type="color" id="couleur" name="couleur"
+                        [(ngModel)]="couleur" class="custom-keep-color-picker">
+                </label>
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Collaborateur"
+                    (click)="ajouterCollaborateur()">
+                    <i class="bi bi-person-plus-fill"></i>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip"
+                    title="Ajouter une image" (click)="ajouterImage()">
+                    <i class="bi bi-image-fill"></i>
+                </button>
+
+                
+
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Plus"
+                    (click)="afficherPlusOptions()">
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Annuler"
+                    (click)="annulerModification()">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Répéter"
+                    (click)="refaireModification()">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
+
+            <div>
+                <button type="submit"
+                    [disabled]="!formulaireNote.valid && (titre.trim() === '' && contenu.trim() === '')"
+                    class="btn btn-link custom-keep-close-button">
+                    Fermer
+                </button>
+            </div>
+        </div>
     </div>
-</div>
+</form>

@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable } from '@angular/core'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +21,7 @@ export class NoteService {
         id: "note"+this.notes.length,
         dateCreation: new Date(),
         archiver: false,
-        epingler: false
+        epingler: false,
     };
     this.notes.push(newNote);
     return newNote;
