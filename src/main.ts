@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router'
 import { appConfig } from './app/app.config';
 import { App } from './app/app';
 
+
 bootstrapApplication(App, {
   providers: [
     // Laisse ce tableau vide si tu n'as pas d'autres providers globaux spécifiques

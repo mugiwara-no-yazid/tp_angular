@@ -1,7 +1,4 @@
 <div class="header">
-  <div class="Menu">
-    <app-menu></app-menu>
-  </div>
   <div class="logo">
     <div class="logo-icon">B</div>
     Bloc Notes
@@ -10,3 +7,48 @@
     <input type="text" placeholder="Rechercher...." />
   </div>
 </div>
+
+<nav class="menu">
+  <ul>
+<li onclick="document.getElementById('noteList').style.display = (document.getElementById('noteList').style.display === 'none' ? 'block' : 'none');">
+            Liste des notes
+        </li>
+        <li onclick="document.getElementById('noteForm').style.display = (document.getElementById('noteForm').style.display === 'none' ? 'block' : 'none');">
+
+            Écrire une note
+        </li>
+        <li onclick="document.getElementById('rappel').style.display = (document.getElementById('rappel').style.display === 'none' ? 'block' : 'none');">
+
+            Rappel
+        </li>
+        <li onclick="document.getElementById('archive').style.display = (document.getElementById('archive').style.display === 'none' ? 'block' : 'none');">
+
+            Archive
+        </li>
+        <li onclick="document.getElementById('Corbeille').style.display = (document.getElementById('Corbeille').style.display === 'none' ? 'block' : 'none');">
+
+            Corbeille
+        </li>
+  </ul>
+</nav>
+<div id="noteList" style="display:none; margin-left:260px;">
+    <app-note-list></app-note-list>
+</div>
+<div id="noteForm" style="display:none; margin-left:260px;">
+    <app-note-form></app-note-form>
+</div>
+<div id="rappel" style="display:none; margin-left:260px;">
+    <app-rappel></app-rappel>
+</div>
+<div id="archive" style="display:none; margin-left:260px;">
+    <app-archive></app-archive> 
+</div>
+<div id="Corbeille" style="display:none; margin-left:260px;">
+    <app-supprimer></app-supprimer> 
+</div>
+
+
+
+
+
+
