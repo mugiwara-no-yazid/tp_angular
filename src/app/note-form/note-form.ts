@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgForm, FormsModule } from '@angular/forms'; 
-import { CommonModule } from '@angular/common'; 
+import { NgForm, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Note } from '../models/note';
 import { NoteService } from '../service/note.service';
 
 @Component({
   selector: 'app-note-form',
-  imports: [FormsModule, CommonModule],  
+  imports: [FormsModule, CommonModule],
   templateUrl: './note-form.html',
   styleUrl: './note-form.css'
 })
@@ -16,7 +16,7 @@ export class NoteForm  {
   titre: string = '';
   contenu: string = '';
   couleur: string = '#ffffff';
- 
+
 
   gererSoumission(formulaire: NgForm) {
     // TODO : logique de soumission
@@ -32,8 +32,8 @@ export class NoteForm  {
     this.contenu = value;
   }*/
 
-  
-  
+
+
   onContenuChange(value: string) {
     this.contenu = value;
   }
