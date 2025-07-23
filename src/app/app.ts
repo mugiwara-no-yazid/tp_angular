@@ -14,18 +14,24 @@ import { NoteService } from './service/note';
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'keepgoogle';
-   noteATesterEdition = {
-    id: '1',
-    titre: 'Note à modifier',
-    contenu: 'Contenu initial de la note à éditer.',
-    couleur: '#FFFFE0'
-  };
-  onFormulaireSoumis(): void {
-    console.log('Le formulaire a été soumis ! (Depuis AppComponent)');
-}
-
+  protected title = 'keep Google';
 constructor(private noteservice : NoteService){
-    console.log(this.noteservice.init())
+  
+    
+    this.noteservice.createNote({
+        titre: "Liste de courses",
+        contenu: [
+            { contenu: "Lait", cheker: false },
+            { contenu: "Pain", cheker: true },
+            { contenu: "Œufs", cheker: false }
+        ],
+        couleur: "#FFD700",
+        rappelleDate: new Date("2023-12-15T09:00:00"),
+        colaborateur: ["user1@example.com", "user2@example.com"]});
+
+        console.log(this.noteservice.getNoteById("note4"));
+        
+        //console.log(this.noteservice.getNotes())
+        
   }
 }

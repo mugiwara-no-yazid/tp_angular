@@ -4,8 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NoteService {
-  private notes:INote[] = [];
- 
+  private notes:INote[] = this.init();
+  hello()
+  {
+    console.log(this.notes);
+  }
   getNotes()
    {
     return this.notes;
@@ -18,15 +21,18 @@ export class NoteService {
     colaborateur: string[];
 }): INote {
     const newNote: INote = {
-        ...noteData,
-        id: "note"+this.notes.length,
+        id: "note"+(this.notes.length +1),
         dateCreation: new Date(),
         archiver: false,
-        epingler: false
+        epingler: false,
+        ...noteData
     };
     this.notes.push(newNote);
     return newNote;
 }
+  deleteNote(id: string): void {
+    this.notes = this.notes.filter(note => note.id !== id);
+  }
 
   getNoteById(id: string): INote | undefined {
     const note = this.notes.find(note => note.id === id)
@@ -58,19 +64,22 @@ export class NoteService {
 
       if (newNote.colaborateur !== undefined && newNote.colaborateur.length === 0) 
           noteToUpdate.colaborateur = newNote.colaborateur;
-       this.notes.push(noteToUpdate)
+         this.deleteNote(id);
+       this.notes.push(noteToUpdate);
       return noteToUpdate;
   }
-
-  deleteNote(id: string): void {
-    this.notes = this.notes.filter(note => note.id !== id);
+    getPingNotes(): INote[] {
+    return this.notes.filter(note => note.epingler && !note.archiver);
+  }
+  getArchivedNotes(): INote[] {
+    return this.notes.filter(note => note.archiver);
   }
 
  init():INote[]
   {
     const notes: INote[] = [
     {
-        id: "1",
+        id: "note1",
         titre: "Liste de courses",
         contenu: [
             { contenu: "Lait", cheker: false },
@@ -85,7 +94,7 @@ export class NoteService {
         colaborateur: ["user1@example.com", "user2@example.com"]
     },
     {
-        id: "2",
+        id: "note2",
         titre: "Projet React",
         contenu: "Terminer le composant Note avant vendredi",
         couleur: "#87CEFA",
@@ -96,7 +105,7 @@ export class NoteService {
         colaborateur: ["dev@example.com"]
     },
     {
-        id: "3",
+        id: "note3",
         titre: "Archive test",
         contenu: "Note archivée exemple",
         couleur: "#90EE90",
@@ -107,7 +116,7 @@ export class NoteService {
         colaborateur: []
     },
     {
-        id: "4",
+        id: "note4",
         titre: "Rappel vide",
         contenu: "",
         couleur: "#FFA07A",

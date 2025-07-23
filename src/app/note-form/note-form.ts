@@ -10,7 +10,7 @@ import { NoteService } from '../service/note.service';
   templateUrl: './note-form.html',
   styleUrl: './note-form.css'
 })
-export class NoteForm implements OnInit {
+export class NoteForm{
 
   @Input() noteAEditer: Note | null = null;
 
