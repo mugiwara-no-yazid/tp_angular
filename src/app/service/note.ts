@@ -19,7 +19,7 @@ export class NoteService {
     colaborateur: string[];
 }): INote {
     const newNote: INote = {
-        id: "note"+(this.notes.length +1),
+        id: "note"+(this.notes.length + 1),
         dateCreation: new Date(),
         archiver: false,
         epingler: false,
