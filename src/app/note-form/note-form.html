@@ -30,6 +30,14 @@
                     (click)="toggleRappel()">
                     <i class="bi bi-bell-fill"></i> 
                 </button>
+                <div *ngIf="showRappel" class="d-flex align-items-center gap-2">
+                    <label for="datePicker" class="visually-hidden">Sélectionner une date</label>
+                    <input type="datetime-local" [(ngModel)]="inputDate" min="{{ today }}" title="Sélectionner une date"/>
+                    <button (click)="validerRappel()">Valider</button>
+                </div>
+                <div *ngIf="rappelleDate">
+                    ⏰ Rappel programmé : {{ rappelleDate | date:'dd/MM/yyyy à HH:mm' }}
+                </div>
 
                 <label for="couleur" class="btn btn-sm btn-icon-keep mb-0" data-bs-toggle="tooltip"
                     title="Options de couleur">
