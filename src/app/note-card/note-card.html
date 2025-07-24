@@ -1,35 +1,37 @@
-
-  @if(note){
-
-  <div [style.background]="note.couleur" class="note-card">
+@if(note){
+<div [style.background]="note.couleur" class="note-card">
     <div class="row g-1 position-relative">
-
         <div class="col-12 mb-3">
-            <span id="titre"
-                class="form-control form-control-plaintext fs-4 fw-bold custom-keep-input" >{{ note.titre }}</span>
+            <span id="titre" class="form-control form-control-plaintext fs-4 fw-bold custom-keep-input">{{ note.titre }}</span>
         </div>
 
         <div class="col-12 mb-3">
              @if (typeof note.contenu === 'string') {
                     <p class="form-control form-control-plaintext custom-keep-input" rows="3">{{ note.contenu }}</p>
-      } @else if (note.contenu) {
-        <ul>
-          @for (item of note.contenu; track $index) {
-            <li>
-              <input type="checkbox" [checked]="item.cheker">
-              {{ item.contenu }}
-            </li>
-          }
-        </ul>
-      }
+              } @else if (note.contenu) {
+                <ul class="checklist">
+                  @for (item of note.contenu; track $index) {
+                    <li class="checklist-item">
+                      <input type="checkbox" [checked]="item.cheker" class="checklist-checkbox">
+                      <span class="checklist-text">{{ item.contenu }}</span>
+                    </li>
+                  }
+                </ul>
+              }
+
+              @if(note.rappelleDate !== null ){
+                <div class="reminder-badge">
+                  <i class="bi bi-clock"></i>
+                  <span class="reminder-date">{{ note.rappelleDate }}</span>
+                </div>
+              }
         </div>
 
         <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div class="d-flex align-items-center gap-2">
-                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Rappel">
+                <button (click)="rappelNote()" type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Rappel">
                     <i class="bi bi-bell-fill"></i>
                 </button>
-                <!-- Replace the entire form with this -->
                 <div class="color-picker-container">
                   <label class="color-picker-btn" title="Options de couleur">
                     <i class="bi bi-palette-fill"></i>
@@ -43,18 +45,18 @@
                     <i class="bi bi-person-plus-fill"></i>
                 </button>
 
-                <button  (click)="deleteNote()" type="button" class="action-btn delete-btn" title="Delete note">
+                <button (click)="deleteNote()" type="button" class="action-btn delete-btn" title="Delete note">
                   <i class="bi bi-trash-fill"></i>
                 </button>
 
-                <button (click)="archiveNote()" type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Plus">
+                <button (click)="archiveNote()" type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Archive">
                     <i class="bi bi-archive"></i>
                 </button>
-                <button (click)="editNote()" type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Plus">
+                <button type="button" class="btn btn-sm btn-icon-keep" data-bs-toggle="tooltip" title="Edit">
                     <i class="bi bi-pencil"></i>
                 </button>
             </div>
         </div>
     </div>
-  </div>
-  }
+</div>
+}
