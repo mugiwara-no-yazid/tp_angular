@@ -3,10 +3,14 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { Note } from '../models/note';
 import { NoteService } from '../service/note';
+import { Route } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-note-form',
-  imports: [FormsModule, CommonModule],  
+  imports: [FormsModule, CommonModule,],  
   templateUrl: './note-form.html',
   styleUrl: './note-form.css'
 })
@@ -19,22 +23,13 @@ export class NoteForm  {
   rappelleDate: Date |null = null;
   collaborateur: string[] = []; 
 
-constructor(private noteService: NoteService) { }
+constructor(private noteService: NoteService,     private route: ActivatedRoute,
+    private router: Router
+) { }
 
 
   gererSoumission(formulaire: NgForm) {
-    //console.log("Valeurs du formulaire :", formulaire.value);
-    //console.log("Titre :", this.titre);
-    //console.log("Contenu :", this.contenu);
-    //console.log("Couleur :", this.couleur);
-
-    //console.log("Titre via formulaire.value :", formulaire.value.titre);
-    //console.log("Contenu via formulaire.value :", formulaire.value.contenu);
-    //console.log("Couleur via formulaire.value :", formulaire.value.couleur);
-
-    // Create a new note object based on INote interface
-    const nouvelleNote= {
-      
+    const nouvelleNote= {   
       titre: this.titre,
       contenu: this.contenu,
       couleur: this.couleur,        
@@ -42,10 +37,8 @@ constructor(private noteService: NoteService) { }
       colaborateur: [] 
     };
     this.noteService.createNote (nouvelleNote);
-console.log(this.noteService.getNotes());
+    this.router.navigate(['/notes']);
 
-
-    
   }
 
   
