@@ -10,6 +10,7 @@ import { NgModel } from '@angular/forms';
 templateUrl: "./note-card.html",
 styleUrls: ["./note-card.css"]
 })
+
 export class NoteCard {
   @Input() note!: INote;
 
@@ -20,15 +21,18 @@ export class NoteCard {
     this.noteService = noteService;
   }
 
-
-  editNote() {
+//fonction pour
+/**
+ * @function editNote pour rediriger vers le formulaire de edite
+ */
+  /* editNote() {
     console.log(this.note);
     //this.noteService.updateNote(this.note.id , this.note);
-  }
+  } */
 
   deleteNote() {
     console.log("ICI");
-    
+
     if ( this.note.supprimer === true) {
       this.note.supprimer = false;
     }else{
@@ -45,6 +49,17 @@ export class NoteCard {
 changeCouleur(event: Event) {
   const input = event.target as HTMLInputElement;
   this.note.couleur = input.value;
+}
+
+rappelNote(){
+  if(this.note.rappelleDate === null){
+    this.note.rappelleDate = new Date()
+    console.log("date ajouté");
+  }else{
+    this.note.rappelleDate = null
+    console.log("date supprimé");
+
+  }
 }
 
 }
