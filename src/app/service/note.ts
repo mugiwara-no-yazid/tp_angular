@@ -74,7 +74,9 @@ export class NoteService {
   getArchivedNotes(): INote[] {
     return this.notes.filter(note => note.archiver === true);
   }
-
+  getRappelleNotes(): INote[] {
+    return this.notes.filter(note => note.rappelleDate!= null );
+  }
   getDeletedNotes(): INote[] {
     return this.notes.filter(note => note.supprimer === true);
   }
