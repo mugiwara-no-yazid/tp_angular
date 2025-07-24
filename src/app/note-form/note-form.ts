@@ -6,6 +6,7 @@ import { NoteService } from '../service/note.service';
 
 @Component({
   selector: 'app-note-form',
+  standalone: true,
   imports: [FormsModule, CommonModule],  
   templateUrl: './note-form.html',
   styleUrl: './note-form.css'

@@ -1,4 +1,25 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
-<span class="material-symbols-outlined">
-menu
+<link rel="stylesheet" href=
+     "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<span class="material-symbols-outlined menu-toggle" (click)="toggleMenu()">
+  {{ isMenuOpen ? 'close' : 'menu' }}
 </span>
+
+<nav class="sidenav" [class.open]="isMenuOpen">
+  <ul>
+    <li routerLink="/notes" routerLinkActive="active" (click)="toggleMenu()">
+      <span>Liste des notes</span>
+    </li>
+    
+    <li routerLink="/new-note" routerLinkActive="active" (click)="toggleMenu()">
+      <span>Écrire une note</span>
+    </li>
+    
+    <li routerLink="/reminders" routerLinkActive="active" (click)="toggleMenu()">
+      <span>Rappels</span>
+    </li>
+    
+    <li routerLink="/archive" routerLinkActive="active" (click)="toggleMenu()">
+      <span>Archive</span>
+    </li>
+  </ul>
+</nav>

@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
-import { NoteList } from '../note-list/note-list';
-import { NoteForm } from '../note-form/note-form';
-import { Archive } from '../archive/archive';
-import { Supprimer } from '../supprimer/supprimer';
-import { Rappel } from '../rappel/rappel';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menu',
-  imports: [NoteList, NoteForm, Archive, Supprimer, Rappel],
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './menu.html',
-  styleUrl: './menu.css'
+  styleUrls: ['./menu.css'],
 })
 export class Menu {
+  @Output() menuToggled = new EventEmitter<boolean>();
+  isMenuOpen = false;
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    this.menuToggled.emit(this.isMenuOpen);
+  }
 }

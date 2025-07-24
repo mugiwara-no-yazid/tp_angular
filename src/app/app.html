@@ -1,2 +1,5 @@
-<app-search-bar></app-search-bar>
-<router-outlet></router-outlet>
+<app-menu (menuToggled)="onMenuToggled($event)"></app-menu>
+<div class="main-content" [class.menu-open]="isMenuOpen">
+  <app-search-bar></app-search-bar>
+  <router-outlet></router-outlet>
+</div>

@@ -21,3 +21,12 @@
     position: relative; /* Pour positionner l'épingle */
     padding-bottom: 0 !important;
 }
+
+.main-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.menu-open {
+  margin-left: 250px;
+}
