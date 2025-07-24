@@ -1,1 +1,7 @@
-<p>corbeille works!</p>
+  <div class="notes-grid">
+      @for (note of noteService.getDeletedNotes(); track note.id) {
+        <app-note-card [note]="note"></app-note-card>
+      } @empty {
+        <p>No notes found</p>
+      }
+    </div>

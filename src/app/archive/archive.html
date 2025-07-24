@@ -1,1 +1,7 @@
-<p>archive works!</p>
+    <div class="notes-grid">
+      @for (note of noteService. getArchivedNotes(); track note.id) {
+        <app-note-card [note]="note"></app-note-card>
+      } @empty {
+        <p>No notes found</p>
+      }
+    </div>
