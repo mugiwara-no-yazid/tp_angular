@@ -6,14 +6,13 @@ import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-note-card',
-  imports: [DatePipe],
+  imports: [],
 templateUrl: "./note-card.html",
 styleUrls: ["./note-card.css"]
 })
 export class NoteCard {
   @Input() note!: INote;
-  @Output() edit = new EventEmitter<INote>();
-  @Output() delete = new EventEmitter<string>();
+
   private noteService ;
    couleur: string = '#ffffff';
 
@@ -31,12 +30,20 @@ export class NoteCard {
   }
 
   deleteNote() {
-    this.noteService.deleteNote(this.note.id);
+    console.log("ICI");
+    
+    if ( this.note.supprimer === true) {
+      this.note.supprimer = false;
+    }else{
+      this.note.supprimer = true;
+    }
   }
 
   archiveNote(){
-    this.note.archiver = true;
-    console.log(this.noteService.getArchivedNotes())
+    if (this.note.archiver === false) {
+      this.note.archiver = true;
+    }else
+      this.note.archiver = false;
   }
 changeCouleur(event: Event) {
   const input = event.target as HTMLInputElement;

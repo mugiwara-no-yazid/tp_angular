@@ -12,7 +12,7 @@ export class NoteService {
     titre: string;
     contenu: string | listeCheck[];
     couleur: string;
-    rappelleDate: Date;
+    rappelleDate: Date | null;
     colaborateur: string[];
 }): INote {
     const newNote: INote = {

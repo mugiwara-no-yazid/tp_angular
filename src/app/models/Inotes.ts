@@ -7,7 +7,7 @@ export interface INote
     archiver:boolean;
     supprimer:boolean;
     epingler:boolean;
-    rappelleDate:Date;
+    rappelleDate:Date | null;
     dateCreation:Date;
     colaborateur:string[];
 }
