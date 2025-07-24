@@ -1,1 +1,24 @@
 <p>note-card works!</p>
+<div *ngIf="note" class="note-card" [style.background]="note.couleur">
+  <div class="note-actions">
+    <button (click)="editNote()">✏️</button>
+    <button (click)="deleteNote()">🗑️</button>
+  </div>
+
+  <h3>{{ note.titre }}</h3>
+
+  <ng-container *ngIf="typeof note.contenu === 'string'; else checklist">
+    <p>{{ note.contenu }}</p>
+  </ng-container>
+
+  <ng-template #checklist>
+    <ul *ngIf="note.contenu && note.contenu.length > 0">
+      <li *ngFor="let item of note.contenu">
+        <input type="checkbox" [checked]="item.cheker" />
+        {{ item.contenu }}
+      </li>
+    </ul>
+  </ng-template>
+
+  <small>Created: {{ note.dateCreation | date: 'shortDate' }}</small>
+</div>
