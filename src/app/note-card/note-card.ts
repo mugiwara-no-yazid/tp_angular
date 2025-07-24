@@ -6,7 +6,7 @@ import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-note-card',
-  imports: [DatePipe],
+  imports: [],
 templateUrl: "./note-card.html",
 styleUrls: ["./note-card.css"]
 })
