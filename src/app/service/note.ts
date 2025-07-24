@@ -6,7 +6,7 @@ import { INote, listeCheck } from '../models/Inotes';
 export class NoteService {
   private notes:INote [] = this.init();
   getNotes(): INote[] {
-    return this.notes;
+    return this.notes.filter(note => note.archiver === false && note.supprimer === false )
   }
   createNote(noteData: {
     titre: string;
@@ -20,13 +20,18 @@ export class NoteService {
         dateCreation: new Date(),
         archiver: false,
         epingler: false,
+        supprimer:false,
         ...noteData
     };
     this.notes.push(newNote);
     return newNote;
 }
   deleteNote(id: string): void {
-    this.notes = this.notes.filter(note => note.id !== id);
+    let  notesupprimer = this.getNoteById(id);
+    if(notesupprimer)
+    {
+      notesupprimer.supprimer = true;
+    }
   }
 
   getNoteById(id: string): INote | undefined {
@@ -67,7 +72,11 @@ export class NoteService {
     return this.notes.filter(note => note.epingler && !note.archiver);
   }
   getArchivedNotes(): INote[] {
-    return this.notes.filter(note => note.archiver);
+    return this.notes.filter(note => note.archiver === true);
+  }
+
+  getDeletedNotes(): INote[] {
+    return this.notes.filter(note => note.supprimer === true);
   }
 
  init():INote[]
@@ -76,13 +85,14 @@ export class NoteService {
     {
         id: "note1",
         titre: "Liste de courses",
+        supprimer: false,
         contenu: [
             { contenu: "Lait", cheker: false },
             { contenu: "Pain", cheker: true },
             { contenu: "Œufs", cheker: false }
         ],
         couleur: "#FFD700",
-        archiver: false,
+        archiver: true,
         epingler: true,
         rappelleDate: new Date("2023-12-15T09:00:00"),
         dateCreation: new Date("2023-11-10T14:30:00"),
@@ -92,6 +102,7 @@ export class NoteService {
         id: "note2",
         titre: "Projet React",
         contenu: "Terminer le composant Note avant vendredi",
+        supprimer: false,
         couleur: "#87CEFA",
         archiver: false,
         epingler: false,
@@ -105,6 +116,7 @@ export class NoteService {
         contenu: "Note archivée exemple",
         couleur: "#90EE90",
         archiver: true,
+        supprimer: false,
         epingler: false,
         rappelleDate: new Date("2023-10-01T12:00:00"),
         dateCreation: new Date("2023-09-28T16:45:00"),
@@ -116,6 +128,7 @@ export class NoteService {
         contenu: "",
         couleur: "#FFA07A",
         archiver: false,
+        supprimer: true,
         epingler: true,
         rappelleDate: new Date("2023-12-31T23:59:00"),
         dateCreation: new Date("2023-12-01T08:00:00"),
