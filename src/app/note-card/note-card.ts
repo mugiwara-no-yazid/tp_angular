@@ -21,7 +21,10 @@ export class NoteCard {
     this.noteService = noteService;
   }
 
-
+//fonction pour
+/**
+ * @function editNote pour rediriger vers le formulaire de edite
+ */
   editNote() {
     console.log(this.note);
     //this.noteService.updateNote(this.note.id , this.note);
